@@ -18,6 +18,17 @@ router.post('/', (req, res) => {
     })
 })
 
+router.patch(`/:id`, (req, res) => {
+    const sqlText = `
+    UPDATE "feedback"
+	    SET "flagged" = NOT "flagged"
+	    WHERE "id" = $1;`
+    const sqlValues = [req.params.id]
+    pool.query(sqlText, sqlValues)
+    .then(dbRes => res.sendStatus(200))
+    .catch(dbErr => console.log(`Error updating flagged:`, dbErr))
+})
+
 
 // DO NOT EDIT THIS ROUTE
 // This route must return all feedback.
