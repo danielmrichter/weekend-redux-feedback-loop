@@ -5,6 +5,8 @@ const feeling = (state = ``, action) => {
   switch (action.type) {
     case "SET_FEELING":
       return action.payload;
+    case "CLEAR":
+      return "";
   }
   return state;
 };
@@ -12,6 +14,8 @@ const understanding = (state = ``, action) => {
   switch (action.type) {
     case "SET_UNDERSTANDING":
       return action.payload;
+    case "CLEAR":
+      return "";
   }
   return state;
 };
@@ -19,6 +23,8 @@ const support = (state = ``, action) => {
   switch (action.type) {
     case "SET_SUPPORT":
       return action.payload;
+    case "CLEAR":
+      return "";
   }
   return state;
 };
@@ -26,6 +32,8 @@ const comment = (state = "", action) => {
   switch (action.type) {
     case "SET_COMMENT":
       return action.payload;
+    case "CLEAR":
+      return "";
   }
   return state;
 };
