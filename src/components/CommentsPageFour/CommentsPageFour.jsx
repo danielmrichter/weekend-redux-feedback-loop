@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function CommentsPageFour() {
+  const comments = useSelector(store => store.comment)
+  useEffect(() => setCommentInput(comments), [])
   const [commentInput, setCommentInput] = useState(``);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ export default function CommentsPageFour() {
     history.push(`/review`);
   };
   return (
+    <>
+    <button onClick={() => history.push(`/pageThree`)}>Go Back</button>
     <form onSubmit={handlePageFourSubmit}>
       <label htmlFor="comment">Any Comments you want to leave?</label>
       <input
@@ -27,5 +31,6 @@ export default function CommentsPageFour() {
       />
       <button data-testid="next">NEXT PAGE</button>
     </form>
+    </>
   );
 }

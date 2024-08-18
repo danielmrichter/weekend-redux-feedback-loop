@@ -20,6 +20,7 @@ export default function Review() {
   return (
     <div>
       <h1>Review Your Feedback</h1>
+      <button onClick={() => history.push(`/pageFour`)}>Go Back</button>
       <table>
         <tbody>
           <tr>

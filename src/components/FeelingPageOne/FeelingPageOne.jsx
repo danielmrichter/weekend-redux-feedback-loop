@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 export default function FeelingPageOne() {
+  const feeling = useSelector(store => store.feeling)
+  useEffect(() => setFeelingInput(feeling), [])
   const [feelingInput, setFeelingInput] = useState(``);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ export default function FeelingPageOne() {
     <form onSubmit={handlePageOneSubmit}>
       <input
         id="feeling"
-        // required
+        required
         data-testid="input"
         type="number"
         placeholder="Number 1-6"

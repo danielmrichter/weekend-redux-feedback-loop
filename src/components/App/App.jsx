@@ -12,6 +12,7 @@ import SupportedPageThree from "../SupportedPageThree/SupportedPageThree";
 import CommentsPageFour from "../CommentsPageFour/CommentsPageFour";
 import Review from "../Review/Review";
 import ThankYouPage from "../ThankYouPage/ThankYouPage";
+import Admin from "../Admin/Admin";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route exact path="/thankyou">
           <ThankYouPage />
+        </Route>
+        <Route exact path='/admin'>
+          <Admin />
         </Route>
       </Router>
     </div>
