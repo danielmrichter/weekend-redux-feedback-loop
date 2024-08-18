@@ -1,4 +1,14 @@
-import { Button, Paper, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -34,11 +44,9 @@ export default function Admin() {
         </TableHead>
         <TableBody>
           {feedback
+            .toSorted((b, a) => a.flagged - b.flagged)
             .map((e) => (
-              <TableRow
-                key={e.id}
-                sx={e.flagged ? {bgcolor: 'red'} : {}}
-              >
+              <TableRow key={e.id} s sx={e.flagged ? { bgcolor: "red" } : {}}>
                 <TableCell component="th" scope="row">
                   {e.flagged ? "Marked for Review" : ""}
                 </TableCell>
@@ -56,26 +64,5 @@ export default function Admin() {
         </TableBody>
       </Table>
     </TableContainer>
-    //   <tbody>
-    //     {feedback
-    //       .filter((i) => !i.flagged)
-    //       .map((e) => {
-    //         return (
-    //           <tr>
-    //             <td>{e.feeling}</td>
-    //             <td>{e.understanding}</td>
-    //             <td>{e.support}</td>
-    //             <td>{e.comments}</td>
-    //             <td>
-    //               <button onClick={() => markForReview(e.id)}>
-    //                 Flag for Review
-    //               </button>
-    //             </td>
-    //             <td>{e.flagged ? "Flagged" : "Not Flagged"}</td>
-    //           </tr>
-    //         );
-    //       })}
-    //   </tbody>
-    // </table>
   );
 }
