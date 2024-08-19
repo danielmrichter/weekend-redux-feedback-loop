@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Admin() {
   const [feedback, setFeedback] = useState([]);
   useEffect(() => getReviews, []);
-
   const getReviews = () => {
     axios
       .get(`/api/feedback`)
@@ -29,6 +29,12 @@ export default function Admin() {
       .then((res) => getReviews())
       .catch((err) => console.log(`Error marking ${id} for review:`, err));
   };
+  const handleDeleteButton = (id) => {
+    axios
+        .delete(`/api/feedback/${id}`)
+        .then (res => getReviews())
+        .catch(err => console.log(`Error deleting item ${id}`, err))
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -59,6 +65,7 @@ export default function Admin() {
                     Flag for Review
                   </Button>
                 </TableCell>
+                <TableCell align="right"><Button onClick={() => handleDeleteButton(e.id)}>Delete Item</Button></TableCell>
               </TableRow>
             ))}
         </TableBody>
